@@ -1,0 +1,19 @@
+# 👇 Step 1: Clone the repo
+git clone https://github.com/Shivam67Code/CPP_PROJECTT.git
+
+# 👇 Step 2: Go into the project folder
+cd CPP_PROJECTT
+
+# 👇 Step 3: Create and switch to your personal branch
+git checkout -b siddhartha
+
+#  Now you can open main.cpp and add your code/functions
+
+# 👇 Step 4: Stage and commit your changes after editing
+git add .
+git commit -m "Added Siddhartha's function to main.cpp"
+
+# 👇 Step 5: Push your personal branch to GitHub
+git push -u origin siddhartha
+
+#  You're now all set! When both of us are done, we'll merge our branches into main using pull requests on GitHub.
