@@ -28,7 +28,7 @@ vector<string> getSuggestions(const vector<string> &words, const string &input)
     // comparing the substring(starting of the word) with what user typed.
     if (word.substr(0, input.size()) == input)
     {
-      suggestions.push_back(word); // Changed from 'input' to 'word'
+      suggestions.push_back(word);
     }
   }
   return suggestions;
@@ -69,7 +69,7 @@ int main()
       userInput += ch;
     }
 
-    // Clear line and sHow input and suggestion
+    // Clear lIne and sHow input andSUggestion
     system("cls");
     cout << "Typed: " << userInput << "\n";
 
