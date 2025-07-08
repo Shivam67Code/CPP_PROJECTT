@@ -21,11 +21,14 @@ vector<string> loadWords(const string &filename)
 vector<string> getSuggestions(const vector<string> &words, const string &input)
 {
   vector<string> suggestions;
-  for (const string &word : words)
+  for (int i = 0; i < words.size(); i++)
   {
+    string word = words[i];
+
+    // comparing the substring(starting of the word) with what user typed.
     if (word.substr(0, input.size()) == input)
     {
-      suggestions.push_back(word);
+      suggestions.push_back(word); // Changed from 'input' to 'word'
     }
   }
   return suggestions;
