@@ -1,30 +1,20 @@
+// The job is done upto adding colors yet.
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
 #include <conio.h>
-#include <windows.h>
 
 using namespace std;
 
-// Color codes for Windows console
-enum Color
-{
-  DEFAULT = 7,
-  BLUE = 9,
-  GREEN = 10,
-  CYAN = 11,
-  RED = 12,
-  YELLOW = 14,
-  WHITE = 15
-};
-
-// Set console text color
-void setColor(int color)
-{
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, color);
-}
+// Simple ANSI color codes
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define CYAN "\033[36m"
+#define WHITE "\033[37m"
 
 // CROSS PLATFORM CLEAR SCREEN FUNCTION ADDING
 void clearScreen()
@@ -72,8 +62,8 @@ int main()
   string userInput = "";
   char ch;
 
-  setColor(CYAN);
-  cout << "Start typing (press Enter to autocomplete):\n";
+  cout << CYAN << "Start typing (press Enter to autocomplete):\n"
+       << RESET;
 
   while (true)
   {
@@ -86,10 +76,7 @@ int main()
       {
         userInput = suggestions[0]; // autocomplete
       }
-      setColor(GREEN);
-      cout << "\nAutocompleted: ";
-      setColor(BLUE);
-      cout << userInput << "\n";
+      cout << GREEN << "\nAutocompleted: " << BLUE << userInput << RESET << "\n";
       break;
     }
     else if (ch == 8)
@@ -103,27 +90,19 @@ int main()
     {
       userInput += ch;
     }
-    clearScreen(); // that clear function called fro just once yet
-    setColor(WHITE);
-    cout << "Typed: ";
-    setColor(BLUE);
-    cout << userInput << "\n";
+    clearScreen();
+    cout << WHITE << "Typed: " << BLUE << userInput << RESET << "\n";
 
     vector<string> suggestions = getSuggestions(wordList, userInput);
     if (!suggestions.empty())
     {
-      setColor(WHITE);
-      cout << "Suggestion: ";
-      setColor(GREEN);
-      cout << suggestions[0] << "\n";
+      cout << WHITE << "Suggestion: " << GREEN << suggestions[0] << RESET << "\n";
     }
     else
     {
-      setColor(RED);
-      cout << "No suggestions found.\n";
+      cout << RED << "No suggestions found." << RESET << "\n";
     }
   }
 
-  setColor(DEFAULT);
   return 0;
 }
