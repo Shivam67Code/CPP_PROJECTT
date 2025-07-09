@@ -61,26 +61,27 @@ int main()
 
   string userInput = "";
   char ch;
-
-  cout << CYAN << "Start typing (press Enter to autocomplete):\n"
-       << RESET;
+  cout << CYAN << "Start Typing(press Enter to autoComplete): \n " << RESET;
 
   while (true)
   {
     ch = _getch();
 
     if (ch == '\r')
-    { // Enter key
-      vector<string> suggestions = getSuggestions(wordList, userInput);
-      if (!suggestions.empty())
+    {
+      if (!userInput.empty())
       {
-        userInput = suggestions[0]; // autocomplete
+        vector<string> suggestions = getSuggestions(wordList, userInput);
+        if (!suggestions.empty())
+        {
+          userInput = suggestions[0];
+        }
+        cout << GREEN << "\n Autocompleted word is : " << BLUE << userInput << RESET << endl;
+        break; // thinking of removing it or adding a function instead of it. 🤔
       }
-      cout << GREEN << "\nAutocompleted: " << BLUE << userInput << RESET << "\n";
-      break;
     }
     else if (ch == 8)
-    { // Backspace
+    {
       if (!userInput.empty())
       {
         userInput.pop_back();
@@ -90,17 +91,20 @@ int main()
     {
       userInput += ch;
     }
+
     clearScreen();
-    cout << WHITE << "Typed: " << BLUE << userInput << RESET << "\n";
+    cout << CYAN << "Start Typing(press Enter key to AutoComplete):\n"
+         << RESET;
+    cout << WHITE << "You Typed : " << BLUE << userInput << RESET << endl;
 
     vector<string> suggestions = getSuggestions(wordList, userInput);
-    if (!suggestions.empty())
+    if (!userInput.empty() && !suggestions.empty())
     {
-      cout << WHITE << "Suggestion: " << GREEN << suggestions[0] << RESET << "\n";
+      cout << WHITE << "Suggestions: " << GREEN << suggestions[0] << RESET << endl;
     }
-    else
+    else if (!userInput.empty())
     {
-      cout << RED << "No suggestions found." << RESET << "\n";
+      cout << RED << "No Suggestions Found :(" << RESET << endl;
     }
   }
 
