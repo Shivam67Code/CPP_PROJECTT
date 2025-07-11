@@ -60,6 +60,22 @@ namespace utils{
 
     }
 
+    double pattern_match_prob(std::string user_word,std::string str){
+
+        int i=0;
+        int matched=0;
+        int total=user_word.size();
+        for(char ch: str){
+            if(matched==total) break;
+            if(ch==user_word[i]){
+                matched++;
+                i++;
+            }
+        }
+
+        return ((double)matched/total);
+    }
+
 }
 
 
@@ -68,8 +84,9 @@ double get_probability(std::string word, std::string str){
     double cosine_theta=(utils::vector_dot(word,str)/(utils::magnitude(word)*utils::magnitude(str)));
 
     double semantic_prob = utils::semantic_probability(word,str);
+    double pattern_match_prob=utils::pattern_match_prob(word,str);
 
-    return cosine_theta*semantic_prob;
+    return cosine_theta*semantic_prob*pattern_match_prob ;
 
 }
 

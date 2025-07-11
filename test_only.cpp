@@ -7,8 +7,10 @@ int main(){
     // std::cout<<get_probability("man","manner")<<std::endl;
 
     // std::cout<<dict.get_closest_word("sche")<<std::endl;
-    std::cout<<dict.get_closest_word("um")<<std::endl;
+    // std::cout<<dict.get_closest_word("um")<<std::endl;
     
+    // std::cout<<utils::pattern_match_prob("tble","telescope");
+    std::cout<<dict.get_closest_word("tble");
     
     //try with multiple words , you get approx closest word
     
